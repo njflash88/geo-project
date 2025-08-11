@@ -161,7 +161,7 @@ const l;
           <h3>Current Position</h3>
           <p>Longitude: {coordinates.lng.toFixed(6)}</p>
           <p>Latitude: {coordinates.lat.toFixed(6)}</p>
-          <p>Altitude: {l}</p> 
+          <p>Altitude: {l} {new Date().getTime()}</p> 
         </div>
       </div>
       
