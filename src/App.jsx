@@ -14,7 +14,7 @@ function App() {
   const [coordinates, setCoordinates] = useState({ lng: 114.222, lat: 22.3118 });
   const markerRef = useRef(null);
   const accuracyCircleRef = useRef(null);
-
+const l;
   useEffect(() => {
     // Initialize the map
     map.current = new mapboxgl.Map({
@@ -51,6 +51,7 @@ function App() {
         const { latitude, longitude, accuracy } = position.coords;
         const altitude = GeolocationCoordinates.altitude;
         console.log("** altitude = " + altitude);
+        l = altitude;
         setCoordinates({ lng: longitude, lat: latitude });
         setAccuracy(accuracy);
         setIsLoading(false);
@@ -160,7 +161,7 @@ function App() {
           <h3>Current Position</h3>
           <p>Longitude: {coordinates.lng.toFixed(6)}</p>
           <p>Latitude: {coordinates.lat.toFixed(6)}</p>
-          <p>Altitude: ?</p> 
+          <p>Altitude: {l}</p> 
         </div>
       </div>
       
