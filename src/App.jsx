@@ -49,7 +49,7 @@ function App() {
     navigator.geolocation.getCurrentPosition(
       position => {
         const { latitude, longitude, accuracy } = position.coords;
-        const altitude = position.coords.altitude;
+        const altitude = GeolocationCoordinates.altitude;
         console.log("** altitude = " + altitude);
         setCoordinates({ lng: longitude, lat: latitude });
         setAccuracy(accuracy);
@@ -160,7 +160,7 @@ function App() {
           <h3>Current Position</h3>
           <p>Longitude: {coordinates.lng.toFixed(6)}</p>
           <p>Latitude: {coordinates.lat.toFixed(6)}</p>
-          <p>Altitude: {coordinates.altitude}</p>
+          {/* <p>Altitude: {altitude}</p> */}
         </div>
       </div>
       
