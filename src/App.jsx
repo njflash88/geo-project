@@ -160,7 +160,7 @@ function App() {
           <h3>Current Position</h3>
           <p>Longitude: {coordinates.lng.toFixed(6)}</p>
           <p>Latitude: {coordinates.lat.toFixed(6)}</p>
-          {/* <p>Altitude: {altitude}</p> */}
+          <p>Altitude: ?</p> 
         </div>
       </div>
       
