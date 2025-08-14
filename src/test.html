@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Add a fullscreen control to a map</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+<link href="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v3.14.0/mapbox-gl.js"></script>
+<style>
+body { margin: 0; padding: 0; }
+#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiZmxhc2g4OCIsImEiOiJjbGVyOTNvcnkwdTNnM3hqd2xucGZlNDBxIn0.oesJClY8acmXOVDTDPPnCA';
+    const map = new mapboxgl.Map({
+        container: 'map', // container ID
+        // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/outdoors-v12', // style URL
+        center: [114.255, 22.77], // starting position
+        zoom: 6 // starting zoom
+    });
+
+    map.addControl(new mapboxgl.FullscreenControl());
+    map.addControl(new mapboxgl.GeolocateControl({
+    positionOptions: {
+        enableHighAccuracy: true
+    },
+    trackUserLocation: true,
+    showUserHeading: true
+   }
+
+));
+// Set marker options.
+var popup1 = new mapboxgl.Popup({ offset: 25 }) // optional: adjust offset
+.setHTML('<h3>Gordon</h3>');
+
+var popup2 = new mapboxgl.Popup({ offset: 25 }) // optional: adjust offset
+.setHTML('<h3>Jackie</h3>');
+
+const marker1 = new mapboxgl.Marker({
+    color: "#1c7293",
+    Element: "x",
+}).setPopup(popup1).setLngLat([114.221, 22.3117])
+    .addTo(map);
+console.log(marker1.getElement());
+const marker2 = new mapboxgl.Marker({
+    color: "#1c4423",
+}).setPopup(popup2).setLngLat([114.223, 22.3115])
+    .addTo(map);
+// function animateMarker(timestamp) {
+//     // Calculate the new position based on time or other factors
+//     // For example, interpolating between a start and end point
+//    //  const newLngLat = calculateNewPosition(timestamp); 
+//     myMarker.setLngLat([11.255, 43.77]);
+//     requestAnimationFrame(animateMarker); // Request the next frame
+// }
+
+// requestAnimationFrame(animateMarker); // Start the animation
+    // Start position watcher
+    watchId.current = navigator.geolocation.watchPosition(
+      (pos) => {
+        const { latitude, longitude, altitude, accuracy } = pos.coords;
+        setPosition({ latitude, longitude, altitude, accuracy });
+        setIsLoading(false);
+        
+        // Update map position
+        if (map.current) {
+          // Fly to new position
+          map.current.flyTo({
+            center: [longitude, latitude],
+            zoom: 16,
+            essential: true,
+            duration: 1000
+          });
+          
+          // Update or create marker
+          if (marker.current) {
+            marker.current.setLngLat([longitude, latitude]);
+          } else {
+            marker.current = new mapboxgl.Marker({
+              element: el,
+              offset: [0, -20] // Center the marker tip on position
+            })
+            .setLngLat([longitude, latitude])
+            .addTo(map.current);
+          }
+        }
+      },
+      (err) => {
+        setError(`ERROR(${err.code}): ${err.message}`);
+        setIsLoading(false);
+      },
+      options
+    );
+
+   //  return () => {
+   //    if (watchId.current) navigator.geolocation.clearWatch(watchId.current);
+   //  };
+</script>
+
+</body>
+</html>
