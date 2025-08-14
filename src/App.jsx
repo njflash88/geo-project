@@ -59,14 +59,14 @@ function App() {
 
         <div className="button-section">
           <div className="button-group">
-            {['Create Event', 'Add User', 'Start/End Event', 'Favorite routes', 'Result', 'Reload Map'].map((num) => (
-              <button key={num} className="action-btn">{num}</button>
+            {['Create Event', 'Add Event User', 'Start/End Event', 'Favorite routes', 'Result', 'Reload Map'].map((num) => (
+              <button key={num} className="action-btn push"><span className="front">{num}</span></button>
             ))}
           </div>
           
           <div className="button-group">
             {['Event Page', 'Routes', 'About'].map((letter) => (
-              <button key={letter} className="utility-btn">{letter}</button>
+              <button key={letter} className="utility-btn push"><span class="front">{letter}</span></button>
             ))}
           </div>
         </div>

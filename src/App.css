@@ -129,6 +129,29 @@ button:hover {
   font-size: 18px;
 }
 
+.push {
+  background: hsl(90, 3%, 28%);
+  border-radius: 5px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+}
+
+.front {
+  display: block;
+  /* padding: 12px 42px; */
+  border-radius: 5px 5px;
+  font-size: 1rem;
+  background: hsl(170, 39%, 60%);
+  color: white;
+  transform: translateY(-0.3rem);
+}
+.push:active .front {
+  transform: translateY(-2px);
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
   .app-container {
