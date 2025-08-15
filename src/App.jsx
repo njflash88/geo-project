@@ -66,7 +66,7 @@ function App() {
           
           <div className="button-group">
             {['Event Page', 'Routes', 'About'].map((letter) => (
-              <button key={letter} className="utility-btn push"><span class="front">{letter}</span></button>
+              <button key={letter} className="utility-btn push"><span className="front">{letter}</span></button>
             ))}
           </div>
         </div>

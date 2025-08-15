@@ -4,5 +4,6 @@ import './index.css'
 import App from './App.jsx'
 console.log("main called..");
 createRoot(document.getElementById('root')).render(
-    <App />
+    <StrictMode><App /></StrictMode>
+    
 )
